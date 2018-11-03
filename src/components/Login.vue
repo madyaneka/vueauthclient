@@ -2,8 +2,8 @@
   <div>
     <h2>Login</h2>
     <form v-on:submit="login">
-      <input type="text" name="email" /><br>
-      <input type="password" name="password" /><br>
+      <input v-model="email" type="text" name="email" /><br>
+      <input v-model="password" type="password" name="password" /><br>
       <input type="submit" value="Login" />
     </form>
   </div>
@@ -14,15 +14,19 @@ import router from '../router'
 import axios from 'axios'
 export default {
   name: 'Login',
+  data () {
+    return {
+      email: '',
+      password: ''
+    }
+  },
   methods: {
     login: (e) => {
       e.preventDefault()
-      let email = 'user@email.com'
-      let password = 'password'
-      let login = () => {
-        let data = {
-          email: email,
-          password: password
+      const login = () => {
+        const data = {
+          email: this.email,
+          password: this.password
         }
         axios.post('/api/login', data)
           .then((response) => {
