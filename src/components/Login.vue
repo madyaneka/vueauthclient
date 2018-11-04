@@ -2,8 +2,8 @@
   <div>
     <h2>Login</h2>
     <form v-on:submit="login">
-      <input v-model="email" type="text" name="email" /><br>
-      <input v-model="password" type="password" name="password" /><br>
+      <input type="text" name="email" /><br>
+      <input type="password" name="password" /><br>
       <input type="submit" value="Login" />
     </form>
   </div>
@@ -25,8 +25,8 @@ export default {
       e.preventDefault()
       const login = () => {
         const data = {
-          email: this.email,
-          password: this.password
+          email: e.target.elements.email.value,
+          password: e.target.elements.password.value
         }
         axios.post('/api/login', data)
           .then((response) => {
